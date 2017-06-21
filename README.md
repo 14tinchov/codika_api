@@ -23,17 +23,29 @@ Basic use
 You can use Postman or CURL. Example with CURL:
 
 0. `rails server`
-1. Get tokens to use api
+
+1. Register a user
+```
+curl -X POST \
+  http://localhost:3000/api/v1/auth \
+  -H 'cache-control: no-cache' \
+  -H 'content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW' \
+  -F email={email} \
+  -F password={password} \
+  -F password_confirmation={password}
+```
+
+2. Get tokens to use api
 ```
 curl -X POST \
   -i http://localhost:3000/api/v1/auth/sign_in \
   -H 'cache-control: no-cache' \
   -H 'content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW' \
-  -F email=user@example.com \
-  -F password=asdqwe123
+  -F email={email} \
+  -F password={password}
 ```
 
-2. Copy Access-Token, Client and Uid from headers
+3. Copy Access-Token, Client and Uid from headers
 
 3. Get posts with tokens
 ```
